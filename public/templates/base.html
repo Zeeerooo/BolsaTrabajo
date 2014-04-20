@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+{% load staticfiles%}
+<html>
+    <head>
+    {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+        <title>{% block title %} {% endblock %}</title>
+        {% block loadscript %}
+        {% endblock loadscript %}
+        
+        {% block javascript %}
+        {% endblock javascript %}
+    {% endblock head %}
+    </head>
+
+    <body>
+        {% block body %}
+        <header>
+            {% block header %}
+            {% endblock %}
+        </header>
+
+            {% block main %}
+            {% endblock %}
+        
+        {% endblock %}
+    </body>
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+    {% block scripts-down %}
+    {% endblock %}
+</html>
