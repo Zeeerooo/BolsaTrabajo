@@ -9,16 +9,19 @@
           
             <!-- sidebar -->
             <div class="column col-sm-3" id="sidebar">
-                <a class="logo" href="#">B</a>
-                <ul class="nav">
+                <!--<a class="logo" href="#"></a>
+                  <ul class="nav">
                     <li class="active"><a href="#featured">Featured</a>
                     </li>
                     <li><a href="#stories">Stories</a>
                     </li>
-                </ul>
+                  </ul>-->
                 <ul class="nav hidden-xs" id="sidebar-footer">
                     <li>
-                      <a href="http://www.bootply.com"><h3>Basis</h3>Made with <i class="glyphicon glyphicon-heart-empty"></i> by Bootply</a>
+                      <a href="{% url 'index' %}"><h3>Bolsa de trabajo</h3>
+                      Departamento Ciencias de la Computación
+                      <!--Made with <i class="glyphicon glyphicon-heart-empty"></i> by Bootply-->
+                      </a>
                     </li>
                 </ul>
             </div>
@@ -31,14 +34,14 @@
                       
                         <!-- content -->
                         
-                        <div class="col-sm-12" id="featured">   
+<!--                         <div class="col-sm-12" id="featured">   
                           <div class="page-header text-muted">
                           Featured
                           </div> 
-                        </div>
+                        </div> -->
                         
                         <!--/top story-->
-                        <div class="row">    
+<!--                         <div class="row">    
                           <div class="col-sm-10">
                             <h3>This is Some Awesome Featured Content</h3>
                             <h4><span class="label label-default">techvisually.com</span></h4><h4>
@@ -48,11 +51,11 @@
                           <div class="col-sm-2">
                             <a href="#" class="pull-right"><img src="/assets/example/bg_sailboat.jpg" class="img-circle"></a>
                           </div> 
-                        </div>
+                        </div> -->
                         
                         <div class="col-sm-12" id="stories">  
                           <div class="page-header text-muted divider">
-                            Top Stories
+                            Ofertas Disponibles
                           </div>
                         </div>
                         
@@ -60,14 +63,18 @@
                         <!--/stories-->
                         <div class="row">    
                           <div class="col-sm-10">
-                            <h3>Dramatically Raise the Value of Any Piece of Content</h3>
-                            <h4><span class="label label-default">searchenginewatch.com</span></h4><h4>
+                            <h3>Investigador part-time Adkintun Mobile</h3>
+                            <h4><span class="label label-default">NIC Chile Research Labs</span>
+                            <span class="label label-info">Part-Time</span>
+                            <span class="label label-info">Práctica</span>
+                            </h4>
+                            <h4>
                             <small class="text-muted">1 hour ago • <a href="#" class="text-muted">Read More</a></small>
                             </h4>
                           </div>
                           <div class="col-sm-2">
-                            <a href="#" class="pull-right"><img src="/assets/example/bg_dogcat.jpg" class="img-circle"></a>
-                          </div> 
+                            <a href="#" class="pull-right"><img src="//placehold.it/100" class="img-circle"></a>
+                          </div>
                         </div>
                         
                         <div class="row divider">    
@@ -76,20 +83,23 @@
                         
                         <div class="row">    
                           <div class="col-sm-10">
-                            <h3>14 Useful Sites for Designers</h3>
-                            <h4><span class="label label-default">devgarage.com</span></h4><h4>
+                            <h3>Trabajo dirigido cuaticamente brígido </h3>
+                            <h4><span class="label label-default">Pablo Barceló</span>
+                            <span class="label label-info">Trabajo Dirigido</span>
+                            <span class="label label-info">Full-Time</span></h4>
+                            <h4>
                             <small class="text-muted">2 days ago • <a href="#" class="text-muted">Read More</a></small>
                             </h4>
                           </div>
                           <div class="col-sm-2">
-                            <a href="#" class="pull-right"><img src="/assets/example/bg_suburb.jpg" class="img-circle"></a>
+                            <a href="#" class="pull-right"><img src="//placehold.it/100" class="img-circle"></a>
                           </div>
                         </div>
                         
                         <div class="row divider">    
                            <div class="col-sm-12"><hr></div>
                         </div>
-                        
+                        <!-- 
                         <div class="row">    
                           <div class="col-sm-10">
                             <h3>Bootstrap Builders Get Their Own Playground</h3>
@@ -138,19 +148,30 @@
                           <div class="page-header text-muted divider">
                             Up Next
                           </div>
+                        </div> -->
+
+                        <div class="col-sm-12" id="stories">  
+                          <div class="page-header text-muted divider">
+                            Clasificaciones
+                          </div>
                         </div>
                       
                         <div class="row">    
-                          <div class="col-sm-4 text-center">
-                            <h4>Related 1</h4>
+                          
+                          <div class="col-sm-3 text-center">
+                            <h4>Full-Time</h4>
                             <a href="#"><img src="//placehold.it/100" class="img-circle"></a>
                           </div>
-                          <div class="col-sm-4 text-center">
-                            <h4>Related 2</h4>
+                          <div class="col-sm-3 text-center">
+                            <h4>Part-Time</h4>
                             <a href="#"><img src="//placehold.it/100" class="img-circle"></a>
                           </div>
-                          <div class="col-sm-4 text-center">
-                            <h4>Related 3</h4>
+                          <div class="col-sm-3 text-center">
+                            <h4>Trabajos Dirigidos</h4>
+                            <a href="#"><img src="//placehold.it/100" class="img-circle"></a>
+                          </div>
+                          <div class="col-sm-3 text-center">
+                            <h4>Prácticas</h4>
                             <a href="#"><img src="//placehold.it/100" class="img-circle"></a>
                           </div>
                         </div>
@@ -158,7 +179,7 @@
                       
                         <div class="col-sm-12">
                           <div class="page-header text-muted divider">
-                            Connect with Us
+                            Contáctanos
                           </div>
                         </div>
                       
@@ -176,18 +197,18 @@
                           </div>
                           <div class="col-sm-6">
                             <p>
-                            <a href="#" class="pull-right">©Copyright Inc.</a>
+                            <a href="#" class="pull-right">CaDCC 2014</a>
                             </p>
                           </div>
                         </div>
                       
-                      <hr>
+<!--                       <hr>
                       
                       <h3 class="text-center">
                       <a href="http://bootply.com/86704" target="ext">Download this Template</a>
                       </h3>
                         
-                      <hr>
+                      <hr> -->
                         
                       
                     </div><!-- /col-9 -->
