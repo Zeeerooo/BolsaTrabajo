@@ -1,0 +1,43 @@
+{% extends "base.html"%}
+{% load staticfiles%}
+
+
+{% block title %}Bolsa de Trabajo | Login{% endblock %}
+
+
+{% block main%}
+
+            <form id="login" action="" method="post" class="tokenform">
+                {% csrf_token %}
+                <fieldset>
+                    <ol>
+                        <li>
+                            <label for="id_email"><h1>Email</h1></label>
+                            {{form.email}}
+                        </li>
+                        <li>
+                            <label for="id_password"><h1>Contraseña</h1></label>
+                            {{form.password}}
+                        </li>
+                        <li>
+                            <div class="login_remember">
+                                <input name="remember" type="checkbox"><label for="remember">Recordar datos</label>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="submit" value="Ingresar" name="submit" id="boton_" class="boton_2" />
+                        {% if messages %}
+                        </li>
+                        <li>
+                            <ul class="errorlist">
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        </li>
+                    </ol>
+                </fieldset>
+            </form>
+            
+{% endblock%}
