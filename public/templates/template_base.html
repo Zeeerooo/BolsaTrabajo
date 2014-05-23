@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+{% load staticfiles%}
+<html lang="es">
+    <head>
+    {% block head %}
+		<!-- Tags Meta -->
+        <meta http-equiv="Content-Type">
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+		<meta name="description" content="Sistema de Bolsa de Trabajo para gestionar ofertas de empleo. DCC UChile">
+		<meta name="keywords" content="DCC,UCHILE,Trabajo,BolsaTrabajo,Computación,Investigación,Universidad">
+		<meta name="author" content="CaDCC: Centro de Alumnos, Departamento de Ciencias de la Computación, Universidad de Chile">
+
+		<!-- CSS -->
+		<link rel="shortcut icon" href="favicon.ico">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        {% block css %}	{% endblock css %}
+
+		<!-- JS -->
+        {% block javascript %}	{% endblock javascript %}
+        
+        <title>{% block title %} Bolsa de Trabajos DCC {% endblock %}</title>
+    {% endblock head %}
+    </head>
+
+    <body>
+        {% block body %}	{% endblock %}
+		<footer> <div class="container"> {% block footer %}	{% endblock %} </div></footer>
+
+	{% block extra-js %}	{% endblock %}
+    </body>
+
+</html>

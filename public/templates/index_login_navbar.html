@@ -1,0 +1,25 @@
+<div class="navbar-wrapper" id="inicio">
+	<div class="container">
+		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{% url 'index' %}">Bolsa de Trabajo DCC</a>
+				</div>
+				<div class="navbar-collapse collapse navbar-right">
+					<form class="navbar-form" action="{% url 'login' %}" role="form" method="post">
+						{% csrf_token %}
+						<div class="form-group "><!--<input type="text" class="form-control" placeholder="Correo @DCC">-->{{loginForm.email}}</div>
+						<div class="form-group"><!--<input type="password" placeholder="Contraseña" class="form-control">-->{{loginForm.password}}</div>
+						<button type="submit" class="btn btn-success">Acceder</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
