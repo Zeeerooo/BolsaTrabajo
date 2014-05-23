@@ -1,87 +1,73 @@
-{% extends "base.html"%}
+{% extends 'template_base.html' %}
 {% load staticfiles%}
 
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock css %}
 
-{% block title %}Bolsa de Trabajo | Login{% endblock %}
+{% block body %}
 
+    <!-- Inicio barra superior Login -->
+	{% include 'index_login_navbar.html' %}
+    <!-- Fin barra superior Login -->
 
-{% block main%}
+<div class="container">
+	<br>
+	<div class="page-header">
+		<h1>Acceso al Sistema <small>Publicación Ofertas y Registro Usuarios</small></h1>
+	</div>
+	<div class="row">
 
- <!--            <form id="login" action="" method="post" class="tokenform">
-                {% csrf_token %}
-                <fieldset>
-                    <ol>
-                        <li>
-                            <label for="id_email"><h1>Email</h1></label>
-                            {{form.email}}
-                        </li>
-                        <li>
-                            <label for="id_password"><h1>Contraseña</h1></label>
-                            {{form.password}}
-                        </li>
-                        <li>
-                            <div class="login_remember">
-                                <input name="remember" type="checkbox"><label for="remember">Recordar datos</label>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="submit" value="Ingresar" name="submit" id="boton_" class="boton_2" />
-                        {% if messages %}
-                        </li>
-                        <li>
-                            <ul class="errorlist">
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                        </li>
-                    </ol>
-                </fieldset>
+	{% if messages %}
+	<div class="alert alert-danger">
+		<strong>Errores!</strong> Este globo sólo debería aparecer cuando algo salga mal.<br>
+		<ul class="errorlist">
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
 
-                            </form> -->
+		<div class="col-xs-6 centroDerecha">
+			<form class="form-signin" role="form">
+				<h2 class="form-signin-heading">Formulario de Publicación</h2>
+				<h4 class="text-center"><i><small>Empresas - Académicos</small></i></h4>
+				<p>Para ingresar una oferta de trabajo al sistema, complete el formulario de postulaciones con los datos de la oferta.</p>
+				<p>Una vez completado, se le pedirá confirmar el correo de contacto.</p>
+				<button type="button" class="btn btn-lg btn-primary btn-block">Ir al Formulario de Postulaciones</button>
+			</form>
+		</div>
+		<div class="col-xs-6 centroIzquierda">
+			<form class="form-signin" role="form">
+				{% csrf_token %}
+				<h2 class="form-signin-heading">Registro Nuevo Usuario</h2>
+				<h4 class="text-center"><i><small>Egresados - Estudiantes DCC</small></i></h4>
+				<!--
+				<input type="email" class="form-control" placeholder="Correo @dcc" required autofocus>
+				<input type="password" class="form-control" placeholder="Contraseña" required>
+				<input type="password" class="form-control" placeholder="Reingrese Contraseña" required>
+				-->
+				{{signUpForm.email}}
+				{{signUpForm.repeatEmail}}
+				{{signUpForm.password}}
+				{{signUpForm.repeatPassword}}
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+			</form>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+</div>
+{% endblock %}
 
-            <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h1 class="text-center">Login</h1>
-                  </div>
-                  <div class="modal-body">
-                      <form class="form col-md-12 center-block">
-                      {% csrf_token %}
-                        <div class="form-group">
-                        {{form.email}}
-                          <!-- <input type="text" class="form-control input-lg" placeholder="Email"> -->
-                        </div>
-                        <div class="form-group">
-                        {{form.password}}
-                          <!-- <input type="password" class="form-control input-lg" placeholder="Password"> -->
-                        </div>
-                        <div class="form-group">
-                          <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                          <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-                        </div>
-                      </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="col-md-12">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    </div>    
-                </div>
-                {% for message in messages %}
-                        {{ message }}
-                {% endfor %}
-              </div>
-              </div>
-            </div>
+{% block footer %}
+	<p class="text-muted">© 2014 Una iniciativa CaDCC, Universidad de Chile.</p>
+{% endblock %}
 
-
-
-
-{% endblock%}
-
-{% block scripts-down %}
-        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% block extra-js %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/scroll_link.js' %}"></script>
 {% endblock %}
