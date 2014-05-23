@@ -8,5 +8,5 @@ class LoginForm(forms.Form):
     """
         Metodo que se encarga de definir los campos que tendra el formulario de login
     """
-    email = forms.EmailField(label='Ingresa tu email', required=True, error_messages={'required': 'Campo Obligatorio'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Email', 'class' : 'datostoken'}))
-    password = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'datostoken'}))
+    email = forms.EmailField(label='Ingresa tu email', required=True, error_messages={'required': 'Campo Obligatorio'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Email', 'class' : 'datostoken form-control input-lg' }))
+    password = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'datostoken form-control input-lg'}))
