@@ -19,7 +19,11 @@
 			<h1>Catalogo de Ofertas <small></small></h1>
 		</div>
 		<!-- Inicio Categorias -->
-		aca las categorias
+			<ul class="nav nav-tabs nav-justified">
+				{% for cat in categories %}
+					<li {% if active_tab in cat %} class="active" {% endif %}><a href="#">{{cat}}</a></li>
+				{% endfor %}
+			</ul>
 		<!-- Fin Categorias -->
 
 		<br>
