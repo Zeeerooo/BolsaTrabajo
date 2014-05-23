@@ -19,13 +19,27 @@ class Offer(models.Model):
 	directed_work: booleano para categorizar a la oferta como de tipo trabajo dirigido
 	'''
 	id = models.CharField(primary_key=True, default = ''.join([choice(printable) for i in xrange(20)]), max_length=20 )
+
+	long_description = models.CharField(max_length=2000, blank=True)
+	short_description = models.CharField(max_length=140, blank=True)
+	tecnologies = models.CharField(max_length=500, blank=True)
 	date = models.DateTimeField(default=datetime.now)
-	description = models.CharField(max_length=2000)
-	enterprise = models.CharField(max_length=50)
-	part_time = models.BooleanField(default=False)
-	full_time = models.BooleanField(default=False)
-	practice = models.BooleanField(default=False)
-	directed_work = models.BooleanField(default=False)
+	expire_date = models.DateTimeField(default=datetime.now)
+	institution = models.CharField(max_length=100, blank=True)
+	responsable = models.CharField(max_length=100)
+	mail = models.EmailField(max_length=70, blank=True)
+	phone = models.CharField(max_length=20, blank=True)
+	length = models.CharField(max_length=30, blank=True)
+	work_direction = models.CharField(max_length=30, blank=True)
+	offer_type = models.ManyToManyField("Offer_Type", blank=True, null=True)
 
 	def __unicode__(self):
-		return self.enterprise + " " + self.date
+		return self.institution + " - " + self.date
+
+class Offer_Type(models.Model):
+	'''
+	Tipos de ofertas permitidos
+	'''
+	id = models.IntegerField(primary_key=True, max_length=1)
+	name = models.CharField(max_length=100)
+

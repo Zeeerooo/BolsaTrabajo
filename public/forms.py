@@ -20,3 +20,4 @@ class SignUpForm(forms.Form):
     repeatEmail = forms.EmailField(label='Repetir Correo @DCC', required=True, error_messages={'required': 'Los correos deben coincidir'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Repetir Correo @DCC', 'class' : 'form-control'}))
     password = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'form-control'}))
     repeatPassword = forms.CharField(label='Repetir Contraseña', required=True, error_messages={'required': 'Contraseñas deben coincidir'}, widget=forms.PasswordInput(attrs={'placeholder': 'Repetir Contraseña', 'class' : 'form-control'}))
+
