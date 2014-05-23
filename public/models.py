@@ -32,6 +32,7 @@ class Offer(models.Model):
 	length = models.CharField(max_length=30, blank=True)
 	work_direction = models.CharField(max_length=30, blank=True)
 	offer_type = models.ManyToManyField("Offer_Type", blank=True, null=True)
+	verified = models.BooleanField(default=True)
 
 	def __unicode__(self):
 		return self.institution + " - " + self.date
