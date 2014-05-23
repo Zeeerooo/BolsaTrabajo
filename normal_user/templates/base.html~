@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sticky-footer-navbar.css' %}">
         
         <title>{% block title %} {% endblock %}</title>
         {% block load %}
@@ -17,16 +18,9 @@
     </head>
 
     <body>
-        {% block body %}
-        <header>
-            {% block header %}
-            {% endblock %}
-        </header>
-
-            {% block main %}
-            {% endblock %}
-        
+        {% block navbar %}       
         {% endblock %}
+lalla
     </body>
     <footer>
         {% block footer %}
