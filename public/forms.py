@@ -22,7 +22,7 @@ class SignUpForm(forms.Form):
     repeatPassword = forms.CharField(label='Repetir Contraseña', required=True, error_messages={'required': 'Contraseñas deben coincidir'}, widget=forms.PasswordInput(attrs={'placeholder': 'Repetir Contraseña', 'class' : 'form-control'}))
 
 
-DATA_CHOICES={(0,1)}
+DATA_CHOICES=(("1","Trabajo Full-Time"),  ("2",  "Trabajo Part-Time"),  ("3",  "Trabajo FreeLance"),  ("4",  "Trabajo Dirigido"),  ("5",  "Práctica I"),  ("6",  "Práctica II"))
 
 class AddOfferForm(forms.Form):
     """
@@ -40,4 +40,4 @@ class AddOfferForm(forms.Form):
     work_direction = forms.CharField(label='Dirección de Trabajo',max_length=30, required=False, widget=forms.TextInput(attrs={'type':'text', 'placeholder': 'Dirección', 'class' : 'form-control'}))
     #offer_type = forms.ManyToManyField()
 
-    offer_type = forms.ChoiceField(choices=DATA_CHOICES, widget=forms.RadioSelect(attrs={'required':'true'}), required=True, error_messages={'required': 'Elija una de las opciones'})
+    offer_type = forms.MultipleChoiceField(choices=DATA_CHOICES, widget=forms.CheckboxSelectMultiple())
