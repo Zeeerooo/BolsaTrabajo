@@ -32,7 +32,7 @@ class Offer(models.Model):
 	length = models.CharField(max_length=30, blank=True)
 	work_direction = models.CharField(max_length=30, blank=True)
 	offer_type = models.ManyToManyField("Offer_Type", blank=True, null=True)
-	verified = models.BooleanField(default=True)
+	verified = models.BooleanField(default=False)
 
 	def __unicode__(self):
 		return self.institution + " - " + self.date
@@ -43,4 +43,6 @@ class Offer_Type(models.Model):
 	'''
 	id = models.IntegerField(primary_key=True, max_length=1)
 	name = models.CharField(max_length=100)
+
+
 
