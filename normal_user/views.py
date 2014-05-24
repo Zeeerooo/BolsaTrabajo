@@ -22,6 +22,10 @@ def catalogo(request):
 
 	return render_to_response('catalogo.html', data, context_instance = RequestContext(request))
 
+def show_offer(request, offer_id):
+	#return HttpResponse("Mostrar oferta completa." + offer_id)
+	return render_to_response('oferta_full.html', None, context_instance = RequestContext(request))
+
 def user_preferences(request):
 	return HttpResponse("Sitio de user_preferences.")
 
