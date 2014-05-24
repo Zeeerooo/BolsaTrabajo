@@ -44,5 +44,7 @@ class Offer_Type(models.Model):
 	id = models.IntegerField(primary_key=True, max_length=1)
 	name = models.CharField(max_length=100)
 
+	def __unicode__(self):
+		return self.name
 
 

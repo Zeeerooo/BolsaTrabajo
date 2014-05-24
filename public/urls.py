@@ -7,7 +7,7 @@ METHOD_DISPATCHER = 'public.views_utils.method_dispatcher'
 urlpatterns = patterns('',
     url(r'^catalogo/', include('normal_user.urls')),
 
-
+    url(r'^oferta/', METHOD_DISPATCHER, {'GET': views.offerView, 'POST': views.offerView_post}, name='oferta'),
     url(r'^login/', METHOD_DISPATCHER, {'GET': views.loginView, 'POST': views.loginView_post}, name='login'),
 # Redirecciona a la vista del login
     url(r'','public.views.index', name='index'),
