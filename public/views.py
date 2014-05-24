@@ -44,8 +44,9 @@ def offerView(request):
     '''
         loginView genera la vista de login y loguea al usuario si no esta logueado
     '''
+    loginForm = LoginForm()
     offerForm = AddOfferForm()
-    return render_to_response('oferta.html', {"offerForm": offerForm}, context_instance = RequestContext(request))
+    return render_to_response('oferta.html', {"loginForm": loginForm, "offerForm": offerForm}, context_instance = RequestContext(request))
 
 
 @require_POST
@@ -54,11 +55,11 @@ def offerView_post(request):
         Retorna al formulario de ingreso cuando ingresa una oferta mal, indica el error
     '''
     #return HttpResponse(t.render(context), status = 400)
-
-    form = AddOfferForm(request.POST)
-    if not form.is_valid():
+    loginForm = LoginForm()
+    offerForm = AddOfferForm(request.POST)
+    if not offerForm.is_valid():
         #return HttpResponse("Error")
-        return render_to_response("oferta.html", {"offerForm": form}, context_instance = RequestContext(request))
+        return render_to_response("oferta.html", {"loginForm": loginForm, "offerForm": offerForm}, context_instance = RequestContext(request))
     else:
         return HttpResponse("No hay Error")
         #return render_to_response('index.html',  context_instance = RequestContext(request))
