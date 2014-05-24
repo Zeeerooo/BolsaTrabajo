@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+#DB
+from public.models import Offer_Type
 
 def catalogo(request):
 	#return HttpResponse("Here's the text of the Web page.")
@@ -12,8 +14,9 @@ def catalogo(request):
 
 	#Recuperar datos de consulta a la bd
 	active_tab = "Practicas II"
-	categories = ["Trabajos Full-Time","Trabajos Part-Time","Practicas I","Practicas II","Trabajos FreeLance","Trabajos Dirijidos", "Todas las Ofertas"]
+	#categories = ["Trabajos Full-Time","Trabajos Part-Time","Practicas I","Practicas II","Trabajos FreeLance","Trabajos Dirijidos", "Todas las Ofertas"]
 
+	categories = Offer_Type.objects.all()
 	#recuperar ofertas de bd
 	jobs = [1,2,3,4,5,6,7]
 

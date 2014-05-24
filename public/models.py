@@ -31,6 +31,7 @@ class Offer(models.Model):
 	phone = models.CharField(max_length=20, blank=True)
 	length = models.CharField(max_length=30, blank=True)
 	work_direction = models.CharField(max_length=30, blank=True)
+	salary = models.CharField(max_length=30, blank=True)
 	offer_type = models.ManyToManyField("Offer_Type", blank=True, null=True)
 	verified = models.BooleanField(default=False)
 
