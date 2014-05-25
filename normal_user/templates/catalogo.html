@@ -21,9 +21,9 @@
 		<!-- Inicio Categorias -->
 			<ul class="nav nav-tabs nav-justified">
 				{% for cat in categories %}
-					<li {% if active_tab in cat %} class="active" {% endif %}><a href="#">{{cat}}</a></li>
+					<li {% if active_tab == cat.name %} class="active" {% endif %}><a href="{% url 'catalogo' cat.name %}">{{cat.name}}</a></li>
 				{% endfor %}
-				<li class=""><a href="#">Ver Todos</a></li>
+				<li {% if active_tab == "Ver Todos" %} class="active" {% endif %}><a href="{% url 'catalogo' "Ver Todos" %}">Ver Todos</a></li>
 			</ul>
 		<!-- Fin Categorias -->
 

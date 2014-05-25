@@ -6,7 +6,8 @@ from django.http import HttpResponse
 #DB
 from public.models import Offer_Type
 
-def catalogo(request, active_tab=None):
+def catalogo(request, active_tab="Trabajo Full-Time"):
+	active_tab = active_tab.replace("_"," ")
 	#return HttpResponse("Here's the text of the Web page.")
 
 	categories = Offer_Type.objects.all()
