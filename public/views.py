@@ -49,7 +49,7 @@ def loginView_post(request):
             print "Funciono amiguito"
             #if request.POST.get('remember', None):
             #    request.session.set_expiry(0)
-            messages.add_message(request, messages.ERROR, 'Ingresado correctamente')
+            messages.add_message(request, messages.SUCCESS, 'Ingresado correctamente')
     else:
         messages.add_message(request, messages.ERROR, 'Email o contraseña incorrectos')
     return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
@@ -81,3 +81,6 @@ def offerView_post(request):
     else:
         return HttpResponse("No hay Error")
         #return render_to_response('index.html',  context_instance = RequestContext(request))
+
+
+
