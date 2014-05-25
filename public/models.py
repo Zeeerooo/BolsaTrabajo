@@ -49,3 +49,5 @@ class Offer_Type(models.Model):
 		return self.name
 
 
+#El codigo siguiente es para hacer que donde se muestra el usuario se muestre el correo en vez del nombre de usuario real
+User.__unicode__ = lambda s: s.email

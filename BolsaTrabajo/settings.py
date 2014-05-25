@@ -110,3 +110,5 @@ STATICFILES_FINDERS = (
 )
 
 EMAIL_CONFIRMATION_DAYS= datetime.timedelta(days=10)
+
+AUTHENTICATION_BACKENDS = ('backends.EmailAuthBackend',)
