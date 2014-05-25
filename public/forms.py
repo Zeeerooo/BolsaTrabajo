@@ -2,6 +2,8 @@
 from django import forms
 from public.models import *
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -12,14 +14,49 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'form-control'}))
 
 
-class SignUpForm(forms.Form):
+class SignUpForm(UserCreationForm):
     """
         Clase que se encarga de definir los campos que tendra el formulario de registro
     """
     email = forms.EmailField(label='Correo @DCC', required=True, error_messages={'required': 'Campo Obligatorio'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Correo @DCC', 'class' : 'form-control'}))
-    repeatEmail = forms.EmailField(label='Repetir Correo @DCC', required=True, error_messages={'required': 'Los correos deben coincidir'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Repetir Correo @DCC', 'class' : 'form-control'}))
-    password = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'form-control'}))
-    repeatPassword = forms.CharField(label='Repetir Contraseña', required=True, error_messages={'required': 'Contraseñas deben coincidir'}, widget=forms.PasswordInput(attrs={'placeholder': 'Repetir Contraseña', 'class' : 'form-control'}))
+    #repeatEmail = forms.EmailField(label='Repetir Correo @DCC', required=True, error_messages={'required': 'Los correos deben coincidir'} , widget=forms.TextInput(attrs={'type':'email', 'placeholder': 'Repetir Correo @DCC', 'class' : 'form-control'}))
+    password1 = forms.CharField(label='Ingresa tu contraseña', required=True, error_messages={'required': 'Campo Obligatorio'}, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class' : 'form-control'}))
+    password2 = forms.CharField(label='Repetir Contraseña', required=True, error_messages={'required': 'Contraseñas deben coincidir'}, widget=forms.PasswordInput(attrs={'placeholder': 'Repetir Contraseña', 'class' : 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('email', 'username',)
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        #email2 = self.cleaned_data["repeatEmail"]
+        #if not email==email2:    
+        #    raise forms.ValidationError('Emails no coinciden')
+        try:
+            User.objects.get(email=email)
+            raise forms.ValidationError('Este e-mail ya está registrado.')
+        except User.DoesNotExist:
+            return email
+
+
+#    def clean_password(self):
+#        
+#        password = self.cleaned_data["password"]
+#        password2 = self.cleaned_data["password2"]
+#        if not password==password2:    
+#            raise forms.ValidationError('Passwords no coinciden')
+#        return password
+
+
+    def save(self, commit=True):
+        print "paso por acuya" 
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        user.email = self.cleaned_data["email"]
+        user.is_active = True # change to false if using email activation
+        user.save()
+        return user
+
 
 
 DATA_CHOICES=(("1","Trabajo Full-Time"),  ("2",  "Trabajo Part-Time"),  ("3",  "Trabajo FreeLance"),  ("4",  "Trabajo Dirigido"),  ("5",  "Práctica I"),  ("6",  "Práctica II"))

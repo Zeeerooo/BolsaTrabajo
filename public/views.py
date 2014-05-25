@@ -6,6 +6,7 @@ from public.forms import *
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from string import letters
 
 
 @require_GET
@@ -84,40 +85,39 @@ def offerView_post(request):
         #return render_to_response('index.html',  context_instance = RequestContext(request))
 
 
-
-
-
-"""
 @require_POST
-def sing_up(request):
+def signup(request):
     '''
     ingresa los datos del usuario que se esta registrando
     '''
-    from django.template.loader import render_to_string
+    print "comienzo la funcion"
     data = request.POST.copy() # so we can manipulate data
+    # random username
+    data['username'] = ''.join([choice(letters) for i in xrange(30)])
     form = SignUpForm(data)
+    print data
+    print form.errors 
     if not form.is_valid():
-        messages.add_message(request, messages.ERROR, 'Formulario Registro Incompleto')
-        return render_to_response("register.html", {"form": form}, context_instance = RequestContext(request))
-    
+        messages.add_message(request, messages.ERROR, 'Complete correctamente los datos')
+        loginForm = LoginForm()
+        return render_to_response("login.html", {"loginForm":loginForm, "signUpForm": form}, context_instance = RequestContext(request))
     form.save()
     email = form.cleaned_data['email']
-    user = User.objects.get(email=email)
+    password = form.cleaned_data['password1']
+    #user = User.objects.get(email=email)
 
-    code = ''.join([choice(letters) for i in xrange(40)])
-    var = EmailConfirmation.objects.filter(user=user)
-    if var:
-        var.update(code=code)
-    else:
-        emailConfirmation = EmailConfirmation(user=user, code=code)
-        emailConfirmation.save()
-    url="http://"+request.get_host()+reverse('uservalidation')+code
-    html_content = render_to_string('register/emailvalidation.html', {'url':url})
-    subject = _(u"Valida tu registro en AdkintunMobile")
-    send_html_mail(subject, html_content, [email])
-    messages.success(request, _(u'En estos momentos te estamos enviando un mail para validar tu cuenta'))
-    return render_to_response("success.html", context_instance = RequestContext(request))
-
-
-
-"""
+    #code = ''.join([choice(letters) for i in xrange(40)])
+    #var = EmailConfirmation.objects.filter(user=user)
+    #if var:
+    #    var.update(code=code)
+    #else:
+    #    emailConfirmation = EmailConfirmation(user=user, code=code)
+    #    emailConfirmation.save()
+    #url="http://"+request.get_host()+reverse('uservalidation')+code
+    #html_content = render_to_string('register/emailvalidation.html', {'url':url})
+    #subject = _(u"Valida tu registro en Bolsa de TrabajoDCC")
+    #send_html_mail(subject, html_content, [email])
+    #messages.success(request, 'En estos momentos te estamos enviando un mail para validar tu cuenta')
+    user = authenticate(username=email, password=password)
+    login(request, user)
+    return render_to_response("index.html", context_instance = RequestContext(request))

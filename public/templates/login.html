@@ -41,7 +41,7 @@
 			</form>
 		</div>
 		<div class="col-xs-6 centroIzquierda">
-			<form class="form-signin" role="form">
+			<form class="form-signin" role="form" action='{% url "signup" %}' method="POST">
 				{% csrf_token %}
 				<h2 class="form-signin-heading">Registro Nuevo Usuario</h2>
 				<h4 class="text-center"><i><small>Egresados DCC - Estudiantes DCC</small></i></h4>
@@ -51,9 +51,9 @@
 				<input type="password" class="form-control" placeholder="Reingrese Contraseña" required>
 				-->
 				{{signUpForm.email}}
-				{{signUpForm.repeatEmail}}
-				{{signUpForm.password}}
-				{{signUpForm.repeatPassword}}
+				<!--{{signUpForm.repeatEmail}}-->
+				{{signUpForm.password1}}
+				{{signUpForm.password2}}
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
 			</form>
 		</div>
