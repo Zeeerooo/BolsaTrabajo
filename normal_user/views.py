@@ -10,12 +10,13 @@ from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 
 def catalogo(request, active_tab="Trabajo Full-Time"):
-	active_tab = active_tab.replace("_"," ")
+	selectedCategory = Offer_Type.objects.get(name=active_tab)
+
 	#return HttpResponse("Here's the text of the Web page.")
 
 	categories = Offer_Type.objects.all()
 	#recuperar ofertas de bd
-	jobs = Offer.objects.all()
+	jobs = Offer.objects.all().filter(verified=True)
 
 	#diccionario para la vista
 	data = {'jobs':jobs, 'active_tab':active_tab, 'categories':categories}

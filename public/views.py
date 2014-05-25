@@ -86,8 +86,7 @@ def offerView_post(request):
         data = offerForm.cleaned_data
         oferta = Offer(long_description=data['long_description'], short_description=data['short_description'], tecnologies=data['tecnologies'], institution=data['institution'], responsable=data['responsable'], mail=data['mail'], phone=data['phone'], length=data['length'], work_direction=data['work_direction'], salary=data['salary'])
         oferta.save()
-        return HttpResponse('ok')
-        #return render_to_response('index.html',  context_instance = RequestContext(request))
+        return render_to_response('oferta_ingresada.html',  context_instance = RequestContext(request))
 
 
 @require_POST
