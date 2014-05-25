@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 #DB
-from public.models import Offer_Type
+from public.models import Offer_Type, Offer
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
@@ -15,7 +15,7 @@ def catalogo(request, active_tab="Trabajo Full-Time"):
 
 	categories = Offer_Type.objects.all()
 	#recuperar ofertas de bd
-	jobs = [1,2,3,4,5,6]
+	jobs = Offer.objects.all()
 
 	#diccionario para la vista
 	data = {'jobs':jobs, 'active_tab':active_tab, 'categories':categories}

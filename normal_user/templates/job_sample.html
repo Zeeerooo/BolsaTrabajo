@@ -3,29 +3,28 @@
 		<div class="caption">
 
 			<!-- Titulo Oferta -->
-			<h3 class="offerTitle">{{offer.institution}}</h3>
+			<h3 class="offerTitle">{{job.institution}}</h3>
 
-			<!-- Tags Calculados: proximamente... 
+			<!-- Tags Calculados -->
 			<p class="specialTags">
-				<span title="Este aviso fue publicado hace menos de una semana" class="label label-warning">Nuevo</span>
-				<span title="Muchos usuarios han visitdo este aviso" class="label label-danger">Oferta Hot</span>
-				<span title="La empresa asociado ha publicado varias ofertas" class="label label-info">Empresa Destacada</span>
+				{% if job.isNewOffer %}<span title="Este aviso fue publicado hace menos de una semana" class="label label-warning">Nuevo</span> {% endif %}
+				{% if job.isHotOffer %}<span title="Muchos usuarios han visitdo este aviso" class="label label-danger">Oferta Hot</span> {% endif %}
+				{% if job.isCommonInstitution %}<span title="La empresa asociado ha publicado varias ofertas" class="label label-info">Empresa Destacada</span> {% endif %}
 			</p>
-			-->
 
 			<!-- Descripcion breve -->
-			<p class="offerSmallDescription">{{offer.short_description}}</p>
+			<p class="offerSmallDescription">{{job.short_description}}</p>
 
 			<!-- Conocimientos Tecnicos -->
 			<p class="offerTechSkills">
 				<b>Tecnologias</b>:
-					{% for tec in offer.tecnologies %}
+					{% for tec in job.tecnologies_as_list %}
 						<span class="label label-default">{{tec}}</span>
 					{% endfor %}
 			</p>
 
 			<!-- Duracion -->
-			<p class="offerDuration"><b>Duracion</b>: {{offer.length}}</p>
+			<p class="offerDuration"><b>Duracion</b>: {{job.length}}</p>
 
 			<p><a href="#" class="btn btn-default" role="button">Ver Oferta Completa</a></p>
 		</div>

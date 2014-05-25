@@ -6,7 +6,12 @@ from public.forms import *
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+<<<<<<< HEAD
 from string import letters
+=======
+#BD
+from public.models import Offer
+>>>>>>> 74ae5e429eb8af9045bf6c19bc6543dbd495f922
 
 
 @require_GET
@@ -80,8 +85,11 @@ def offerView_post(request):
         #return HttpResponse("Error")
         return render_to_response("oferta.html", {"loginForm": loginForm, "offerForm": offerForm}, context_instance = RequestContext(request))
     else:
-        offerForm.save()
-        return HttpResponse("No hay error")
+        #offerForm.save()
+        data = offerForm.cleaned_data
+        oferta = Offer(long_description=data['long_description'], short_description=data['short_description'], tecnologies=data['tecnologies'], institution=data['institution'], responsable=data['responsable'], mail=data['mail'], phone=data['phone'], length=data['length'], work_direction=data['work_direction'], salary=data['salary'])
+        oferta.save()
+        return HttpResponse('ok')
         #return render_to_response('index.html',  context_instance = RequestContext(request))
 
 
@@ -121,3 +129,4 @@ def signup(request):
     user = authenticate(username=email, password=password)
     login(request, user)
     return render_to_response("index.html", context_instance = RequestContext(request))
+

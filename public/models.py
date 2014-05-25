@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from random import choice
 from string import printable
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Offer(models.Model):
@@ -37,6 +37,20 @@ class Offer(models.Model):
 
 	def __unicode__(self):
 		return self.institution + " - " + self.date
+
+	def tecnologies_as_list(self):
+		return self.tecnologies.split(',')
+
+	def isNewOffer(self):
+		now = datetime.now().date()
+		published = self.date.date()
+		return (now - published).days < 7
+
+	def isHotOffer(self):
+		return False
+
+	def isCommonInstitution(self):
+		return False
 
 class Offer_Type(models.Model):
 	'''
