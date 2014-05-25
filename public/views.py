@@ -79,5 +79,6 @@ def offerView_post(request):
         #return HttpResponse("Error")
         return render_to_response("oferta.html", {"loginForm": loginForm, "offerForm": offerForm}, context_instance = RequestContext(request))
     else:
-        return HttpResponse("No hay Error")
+        offerForm.save()
+        return HttpResponse("No hay error")
         #return render_to_response('index.html',  context_instance = RequestContext(request))
