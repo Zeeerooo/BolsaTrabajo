@@ -13,19 +13,27 @@
 	  <h4>Detalle de la Oferta</h4>
   </div>
   <div class="panel-body">
-	<p><b>Tematica: </b> Estamos desarrollando nuevas aplicaciones innovadoras para web y moviles, que cambiaran la manera en como vemos el transporte.</p>
-	<p><b>Tecnologias</b>: 
-		<span class="label label-default">MySQL</span>
-		<span class="label label-default">Oracle DB</span>
-		<span class="label label-default">Python</span>
-		<span class="label label-default">Office</span>
+	<!-- Institucion -->
+	<p class="offerInstitution"><b>Empresa: </b> {{offer.institution}}</p>
+
+	<!-- Descripcion Corta -->
+	<p class="offerShortDescription"><b>Tematica: </b> {{offer.short_description}}</p>
+	
+	<!-- Conocimientos relacionados -->
+	<p class="offerTechSkills"><b>Tecnologias</b>: 
+		{% for tec in offer.tecnologies %}
+			<span class="label label-default">{{tec}}</span>
+		{% endfor %}
 	</p>
-	<p><b>Detalles: </b> Practica en A-Dedo!
-A-Dedo, los creadores de A-dedo UChile (ver video: http://www.youtube.com/watch?v=7afvLtoGEa4), asi como del primer y mejor sistema para compartir viajes en auto y rutas en bicicleta en Chile, esta creciendo y en busqueda de practicantes motivados que participen en la internacionalizacion de nuestros servicios este 2014!
-Estamos desarrollando nuevas aplicaciones innovadoras para web y moviles, que cambiaran la manera en como vemos el transporte. Â¡Queremos vivir en ciudades mas descontaminadas, colaborativas y con menos tacos!
-Buscamos estudiantes talentosos y apasionados a los que les motive ser parte de un proyecto entretenido y cursar nuevos desafios, que nos ayuden a mejorar nuestros productos, en especifico nuestro cliente nativo Android.
-Tendras horarios flexibles y te uniras a un equipo de alta calidad tecnica, alegre, motivado y muy abierto a ideas y aportes de gente nueva. Nos interesara mucho ver codigo de otros proyectos en que hayas trabajado asi que no dudes de incluir muestras o links a github, sourceforge o similares cuando nos contactes.</p>
-	<p><b>Remuneracion: </b> $100000 bruto mensual</p>
+
+	<!-- Descripcion Completa -->
+	<p class="offerFullDescription">
+		<b>Detalles: </b> {{offer.long_description}}</p>
+
+	<!-- Remuneracion-->
+	<p class="offerSalary"><b>Remuneracion: </b> {{offer.salary}}</p>
+
+	<!-- Datos Extra, quizá en el futuro...
 	<p><b>Informacion Adicional: </b>
 		<ul>
 		<li><a href="http://www.youtube.com/watch?v=7afvLtoGEa4"><span class="glyphicon glyphicon-facetime-video"></span> http://www.youtube.com/watch?v=7afvLtoGEa4"</a></li>
@@ -33,29 +41,39 @@ Tendras horarios flexibles y te uniras a un equipo de alta calidad tecnica, aleg
 		<li><a href="#"><span class="glyphicon glyphicon-paperclip"></span> Archivo 2</a></li>
 		</ul>
 	</p>
+	-->
   </div>
+
   <table class="table">
+	<!-- Contacto -->
 	  <tr>
 		<td>Empresa o Contacto:</td>
 		<td>
 		<table class="table">
-			<tr><td>A-Dedo</td></tr>
-			<tr><td><a href="mailto:michael@jackson.com"><span class="glyphicon glyphicon-envelope"></span> michael@jackson.com</a></td></tr>
-			<tr><td><a href="#"><span class="glyphicon glyphicon-paperclip"></span> +5621112121</a></td></tr>
+			<tr><td>{{offer.institution}}</td></tr>
+			<tr><td>{{offer.responsable}}</td></tr>
+			<tr><td><a href="mailto:{{offer.mail}}"><span class="glyphicon glyphicon-envelope"></span> {{offer.mail}}</a></td></tr>
+			<tr><td><a href="#"><span class="glyphicon glyphicon-paperclip"></span> {{offer.phone}}</a></td></tr>
 		</table>
 		</td>
 	  </tr>
+
+	<!-- Fecha Limite -->
 	  <tr>
 		<td>Fecha Limite de Postulacion:</td>
-		<td>24/05/2014</td>
+		<td>{{offer.expire_date}}</td>
 	  </tr>
+
+	<!-- Duracion -->
 	  <tr>
 		<td>Duracion del Trabajo:</td>
-		<td>2 Meses</td>
+		<td>{{offer.length}}</td>
 	  </tr>
+
+	<!-- Direccion -->
 	  <tr>
 		<td>Lugar de Trabajo:</td>
-		<td>Avenida Libertador Bernardo Ohiggins 4850, Estacion Central, Santiago</td>
+		<td>{{offer.work_direction}}</td>
 	  </tr>
   </table>
 </div>

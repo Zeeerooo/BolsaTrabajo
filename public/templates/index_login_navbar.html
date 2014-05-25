@@ -11,14 +11,16 @@
 					</button>
 					<a class="navbar-brand" href="{% url 'index' %}">Bolsa de Trabajo DCC</a>
 				</div>
+				{% if loginForm %}
 				<div class="navbar-collapse collapse navbar-right">
 					<form class="navbar-form" action="{% url 'login' %}" role="form" method="post">
 						{% csrf_token %}
-						<div class="form-group "><!--<input type="text" class="form-control" placeholder="Correo @DCC">-->{{loginForm.email}}</div>
-						<div class="form-group"><!--<input type="password" placeholder="Contraseña" class="form-control">-->{{loginForm.password}}</div>
+						<div class="form-group ">{{loginForm.email}}</div>
+						<div class="form-group">{{loginForm.password}}</div>
 						<button type="submit" class="btn btn-success">Acceder</button>
 					</form>
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>

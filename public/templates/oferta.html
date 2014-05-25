@@ -16,8 +16,10 @@
 <div class="container">
 	<br>
 	<div class="page-header">
-		<h1>Acceso al Sistema <small>Publicación Ofertas y Registro Usuarios</small></h1>
+		<h1>Publicación de Ofertas <small>Formulario General</small></h1>
 	</div>
+
+<!-- Deberia ser eliminado...
 
 	{% if messages %}
 	<div class="alert alert-danger">
@@ -29,24 +31,38 @@
 		</ul>
 	</div>
 	{% endif %}
-	<div class="row">
-	<form role="form" action="" method="post">
+
+-->
+
+	<form class="form-horizontal" role="form" action="" method="post">
 		{% csrf_token %}
-    	{% for field in offerForm %}
-    		<div class="row">
-    		    <div class="col-xs-3">
-    	    		{{field.label_tag}}
-		        </div>
-    	   		<div class="col-xs-9">
-    	    		{{field}}
-    	    	</div>
-    	    	{{field.errors}}
-    	    </div>
-    	{%endfor%}
-    	<!--<button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>-->
-    	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Agregar" />
-    </form>
-    </div>
+		{% for field in offerForm %}
+			<div class="form-group {% if field.errors %} has-error {% endif %}">
+				<span class="col-lg-3 control-label">{{field.label_tag}}</span>
+
+				<div class="col-lg-8">
+				{% if field.name == 'short_description' %}
+					<div class="input-group">
+						{{field}}
+						<span id="counter" class="input-group-addon">0/140</span>
+					</div>
+				{% else %}
+					{{field}}
+				{% endif %}
+				{{field.errors}}
+				</div>
+			  </div>
+		{%endfor%}
+		<!--<button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>-->
+		<!-- <input type="submit" class="btn btn-lg btn-primary btn-block" value="Agregar" /> -->
+		<div class="form-group">
+			<div class="col-lg-offset-3 col-lg-8">
+				<button type="submit" class="btn btn-success">Enviar</button>
+				<button class="btn btn-danger">Cancelar</button>
+			</div>
+		</div>
+
+	</form>
 {% endblock %}
 
 {% block footer %}
@@ -57,4 +73,5 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/scroll_link.js' %}"></script>
+	<script src="{% static 'js/updateChars.js' %}"></script>
 {% endblock %}
