@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
+
 @require_GET
 def index(request):
     '''
@@ -46,10 +47,9 @@ def loginView_post(request):
         else:
             #a partir de aqui el usuario se logueo exitosamente
             login(request, user)
-            print "Funciono amiguito"
             #if request.POST.get('remember', None):
             #    request.session.set_expiry(0)
-            messages.add_message(request, messages.SUCCESS, 'Ingresado correctamente')
+            #messages.add_message(request, messages.SUCCESS, 'Ingresado correctamente')
     else:
         messages.add_message(request, messages.ERROR, 'Email o contraseña incorrectos')
     return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
@@ -85,3 +85,39 @@ def offerView_post(request):
 
 
 
+
+
+"""
+@require_POST
+def sing_up(request):
+    '''
+    ingresa los datos del usuario que se esta registrando
+    '''
+    from django.template.loader import render_to_string
+    data = request.POST.copy() # so we can manipulate data
+    form = SignUpForm(data)
+    if not form.is_valid():
+        messages.add_message(request, messages.ERROR, 'Formulario Registro Incompleto')
+        return render_to_response("register.html", {"form": form}, context_instance = RequestContext(request))
+    
+    form.save()
+    email = form.cleaned_data['email']
+    user = User.objects.get(email=email)
+
+    code = ''.join([choice(letters) for i in xrange(40)])
+    var = EmailConfirmation.objects.filter(user=user)
+    if var:
+        var.update(code=code)
+    else:
+        emailConfirmation = EmailConfirmation(user=user, code=code)
+        emailConfirmation.save()
+    url="http://"+request.get_host()+reverse('uservalidation')+code
+    html_content = render_to_string('register/emailvalidation.html', {'url':url})
+    subject = _(u"Valida tu registro en AdkintunMobile")
+    send_html_mail(subject, html_content, [email])
+    messages.success(request, _(u'En estos momentos te estamos enviando un mail para validar tu cuenta'))
+    return render_to_response("success.html", context_instance = RequestContext(request))
+
+
+
+"""

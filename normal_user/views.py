@@ -2,9 +2,12 @@
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 #DB
 from public.models import Offer_Type
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
 
 def catalogo(request, active_tab="Trabajo Full-Time"):
 	active_tab = active_tab.replace("_"," ")
@@ -25,5 +28,8 @@ def show_offer(request, offer_id):
 def user_preferences(request):
 	return HttpResponse("Sitio de user_preferences.")
 
-def logout(request):
-	return HttpResponse("Sistema de Logout.")
+
+@login_required(login_url='/login',redirect_field_name=None)
+def log_out(request):
+	logout(request)
+	return HttpResponseRedirect(reverse("index"))
