@@ -4,7 +4,7 @@
 		<h2 class="featurette-heading">Un completo catálogo de ofertas para <span class="text-muted">Estudiantes</span></h2>
 		<p class="lead">Ingresando al sistema podrás navegar entre las distintas ofertas disponibles. Puedes filtrar resultados según tus preferencias y objetivos del trabajo que necesites.</p>
 		<p class="lead">Sólo necesitas un correo <code>@dcc.uchile.cl</code> para registrarte y podrás hacer uso plenamente del sitio.</p>
-		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="#" role="button">Registro Nuevo Usuario</a></div>
+		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="{% url 'login' %}" role="button">Registro Nuevo Usuario</a></div>
 	</div>
 	<div class="col-md-5">
 		<img class="featurette-image img-responsive" src="{% static 'img/index_full1.png' %}" alt="Generic placeholder image">
@@ -21,7 +21,7 @@
 		<h2 class="featurette-heading">Una gran vitrina para <span class="text-muted">Empresas</span></h2>
 		<p class="lead">Si su empresa necesita trabajadores <b>Part-Time</b>, <b>Full-Time</b>, <b>Practicantes</b> ó alguien para un trabajo <b>Freelance</b> y quiere personas con el sello DCC-UChile, publicite su oferta en la bolsa de trabajos DCC.</p>
 		<p class="lead">Sólo debe completar el formulario de ofertas y verificar la misma con el correo de confirmación que le será enviado, con lo que su oferta estará disponible en el sitio desde ese momento.</p>
-		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="#" role="button">Formulario para Ofertas</a></div>
+		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="{% url 'oferta' %}" role="button">Formulario para Ofertas</a></div>
 	</div>
 </div>
 
@@ -31,7 +31,7 @@
 	<div class="col-md-7">
 		<h2 class="featurette-heading">Un busca talentos para la investigación de <span class="text-muted">Académicos</span></h2>
 		<p class="lead">Aproveche el sistema para ofertar <b>Trabajos Dirigidos</b>, Temas de <b>Investigación</b>, Trabajos para <b>Práctica Profesional</b> y <b>Temas de Memorias</b> a los alumnos del departamento.</p>
-		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="#" role="button">Formulario para Ofertas</a></div>
+		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="{% url 'oferta' %}" role="button">Formulario para Ofertas</a></div>
 	</div>
 	<div class="col-md-5">
 		<img class="featurette-image img-responsive" src="{% static 'img/index_full3.png' %}" alt="Generic placeholder image">

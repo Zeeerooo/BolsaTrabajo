@@ -3,29 +3,29 @@
 		<div class="caption">
 
 			<!-- Titulo Oferta -->
-			<h3 class="offerTitle">OFERTA EJEMPLO</h3>
+			<h3 class="offerTitle">{{offer.institution}}</h3>
 
-			<!-- Tags Calculados -->
+			<!-- Tags Calculados: proximamente... 
 			<p class="specialTags">
 				<span title="Este aviso fue publicado hace menos de una semana" class="label label-warning">Nuevo</span>
 				<span title="Muchos usuarios han visitdo este aviso" class="label label-danger">Oferta Hot</span>
 				<span title="La empresa asociado ha publicado varias ofertas" class="label label-info">Empresa Destacada</span>
 			</p>
+			-->
 
 			<!-- Descripcion breve -->
-			<p class="offerSmallDescription">Debo reemplazar todos los contenidos de los templates por valores reales que se obtengan de objetos pitón, pero calma, ya vendrá.</p>
+			<p class="offerSmallDescription">{{offer.short_description}}</p>
 
 			<!-- Conocimientos Tecnicos -->
 			<p class="offerTechSkills">
 				<b>Tecnologias</b>:
-					<span class="label label-default">Java</span>
-					<span class="label label-default">Android</span>
-					<span class="label label-default">GitHub</span>
-					<span class="label label-default">MySQL</span>
+					{% for tec in offer.tecnologies %}
+						<span class="label label-default">{{tec}}</span>
+					{% endfor %}
 			</p>
 
 			<!-- Duracion -->
-			<p class="offerDuration"><b>Duracion</b>: 2 Meses</p>
+			<p class="offerDuration"><b>Duracion</b>: {{offer.length}}</p>
 
 			<p><a href="#" class="btn btn-default" role="button">Ver Oferta Completa</a></p>
 		</div>
