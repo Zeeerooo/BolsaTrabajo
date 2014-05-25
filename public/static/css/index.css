@@ -7,3 +7,8 @@
 .navbar-right{
 	padding-right: 40px !important;
 }
+
+Body{
+	background-image: url('../img/header.background.gif');
+	background-repeat: repeat-x;
+}
