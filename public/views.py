@@ -6,12 +6,9 @@ from public.forms import *
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-<<<<<<< HEAD
 from string import letters
-=======
 #BD
 from public.models import Offer
->>>>>>> 74ae5e429eb8af9045bf6c19bc6543dbd495f922
 
 
 @require_GET
