@@ -29,7 +29,7 @@ class AddOfferForm(forms.Form):
         Clase que se encargará de definir los campos para el formulario de agregar ofertas
     """
     short_description = forms.CharField(label="Descripción Corta",max_length=140, error_messages={'required': 'Campo Obligatorio'}, widget=forms.Textarea(attrs={'placeholder': 'Utilice este espacio para brindar una breve descripción de maximo 140 caracteres que ilustre la temática y objetivos del trabajo', 'class' : 'form-control', 'rows' : '3', 'onkeyup' : 'updateChars()'}))
-    long_description = forms.URLField(label="Descripción Larga",max_length=2000, error_messages={'required': 'Campo Obligatorio'}, widget=forms.Textarea(attrs={'placeholder': 'Ingrese aquí todos los detalles de la oferta', 'class' : 'form-control', 'rows' : '5'}))
+    long_description = forms.CharField(label="Descripción Larga",max_length=2000, error_messages={'required': 'Campo Obligatorio'}, widget=forms.Textarea(attrs={'placeholder': 'Ingrese aquí todos los detalles de la oferta', 'class' : 'form-control', 'rows' : '5'}))
     tecnologies = forms.CharField(label="Tecnologías requeridas",max_length=500, required=False, widget=forms.TextInput(attrs={'type':'text', 'placeholder': 'Técnologías separadas por comas. Ej: PHP, Java, MySQL, SOA', 'class' : 'form-control'}))
     institution = forms.CharField(label="Empresa o Institución",max_length=100, error_messages={'required': 'Campo Obligatorio'}, widget=forms.TextInput(attrs={'type':'text', 'class' : 'form-control'}))
     responsable = forms.CharField(label="Nombre persona responsable",max_length=100, error_messages={'required': 'Campo Obligatorio'}, widget=forms.TextInput(attrs={'type':'text', 'class' : 'form-control'}))
