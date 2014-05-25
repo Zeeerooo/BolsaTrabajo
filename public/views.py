@@ -26,7 +26,10 @@ def loginView(request):
     '''
         loginView genera la vista de login y loguea al usuario si no esta logueado
     '''
+
     loginForm = LoginForm()
+    if request.user.is_authenticated():
+        return render_to_response('index.html', {"loginForm": loginForm}, context_instance = RequestContext(request))
     signUpForm = SignUpForm()
     return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
 
