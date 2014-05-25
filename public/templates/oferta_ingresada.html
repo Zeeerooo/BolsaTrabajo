@@ -1,0 +1,37 @@
+{% extends 'template_base.html' %}
+{% load staticfiles%}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock css %}
+
+{% block body %}
+
+    <!-- Inicio barra superior Login -->
+	{% include 'index_login_navbar.html' %}
+    <!-- Fin barra superior Login -->
+
+<div class="container">
+	<br>
+	<div class="page-header">
+		<h1>Publicación de Ofertas <small>Formulario General</small></h1>
+	</div>
+
+	<div class=".col-md-6 text-center">
+		<h2>Oferta ingresada!</h2>
+		<p>Su oferta ha sido ingresada al sistema. Gracias por participar</p>
+	</div>
+{% endblock %}
+
+{% block footer %}
+	<p class="text-muted">© 2014 Una iniciativa CaDCC, Universidad de Chile.</p>
+{% endblock %}
+
+{% block extra-js %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/scroll_link.js' %}"></script>
+	<script src="{% static 'js/updateChars.js' %}"></script>
+{% endblock %}
