@@ -78,3 +78,5 @@ class AddOfferForm(forms.Form):
     #offer_type = forms.ManyToManyField()
 
     offer_type = forms.MultipleChoiceField(choices=DATA_CHOICES, widget=forms.CheckboxSelectMultiple())
+
+

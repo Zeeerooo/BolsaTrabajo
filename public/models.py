@@ -36,7 +36,7 @@ class Offer(models.Model):
 	verified = models.BooleanField(default=False)
 
 	def __unicode__(self):
-		return self.institution + " - " + self.date
+		return self.institution + " - " + str(self.date)
 
 	def tecnologies_as_list(self):
 		return self.tecnologies.split(',')
