@@ -31,9 +31,16 @@
 
 		<!-- Inicio Ofertas -->
 		<div class="row">
-			{% for job in jobs %}
-				{% include 'job_sample.html' %}
-			{% endfor %}
+			{% if not jobs %}
+				<div style="padding:30px;margin-bottom:50px;" class=".col-md-6 text-center">
+					<h2>Categoría Sin Ofertas</h2>
+					<p>No existen ofertas asociadas a ésta categoría que estén vigentes =(.</p>
+				</div>
+			{% else %}
+				{% for job in jobs %}
+					{% include 'job_sample.html' %}
+				{% endfor %}
+			{% endif %}
 		</div>
 		<!-- Fin Ofertas -->
 

@@ -31,7 +31,10 @@ def catalogo(request, active_tab="Trabajo Full-Time"):
 
 def show_offer(request, offer_id):
 	#return HttpResponse("Mostrar oferta completa." + offer_id)
-	return render_to_response('oferta_full.html', None, context_instance = RequestContext(request))
+	oferta = Offer.objects.get(id=offer_id)
+	print str(oferta)
+	data = {'offer':oferta}
+	return render_to_response('oferta_full.html', data, context_instance = RequestContext(request))
 
 def user_preferences(request):
 	return HttpResponse("Sitio de user_preferences.")

@@ -21,7 +21,7 @@
 	
 	<!-- Conocimientos relacionados -->
 	<p class="offerTechSkills"><b>Tecnologias</b>: 
-		{% for tec in offer.tecnologies %}
+		{% for tec in offer.tecnologies_as_list %}
 			<span class="label label-default">{{tec}}</span>
 		{% endfor %}
 	</p>
