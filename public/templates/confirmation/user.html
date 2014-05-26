@@ -2,15 +2,15 @@
 {% load i18n %}
 <html class="no-js">
 <head>
-    <title>{% trans 'BolsaTrabajoDCC: Sistema de confirmación de Oferta de Trabajo' %}</title>
+    <title>{% trans 'BolsaTrabajoDCC: Sistema de confirmación de Usuario' %}</title>
 </head>
 <body>
     <p style="font-weight: bold;">{% trans 'Estimado Usuario:' %}</p>
-    <p>{% trans 'Usted ha solicitado publicar una oferta de trabajo en nuestro portal.' %}</p>
+    <p>{% trans 'Usted ha solicitado confirmar su membresía a nuestro portal.' %}</p>
     <p>{% trans 'Para eso ingrese al siguiente link: ' %}</p>
     <a href="{{ url }}"> {{ url }}</a>
     <br>
-    <p>{% trans 'Si usted no pidio esta publicación, por favor sólo ignore este correo.'%}</p>
+    <p>{% trans 'Si usted no pidio esta confirmación, por favor sólo ignore este correo.'%}</p>
     <br>
     <p>{% trans 'Saludos!' %}</p>
     <p style="font-weight: bold;">{% trans 'Bolsa de Trabajo - CaDCC 2014' %}</p>

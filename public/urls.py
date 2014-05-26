@@ -10,7 +10,9 @@ urlpatterns = patterns('',
     url(r'^oferta/', METHOD_DISPATCHER, {'GET': views.offerView, 'POST': views.offerView_post}, name='oferta'),
     url(r'^login/', METHOD_DISPATCHER, {'GET': views.loginView, 'POST': views.loginView_post}, name='login'),
     url(r'^confirmarOferta/$', 'public.views.index', name='offer_confirmation' ),
-    url(r'^confirmarOferta/([a-zA-Z0-9_]+)$', 'public.views.offer_confirmation_code', name='nuncausaremosesto' ),
+    url(r'^confirmarOferta/([a-zA-Z0-9_]+)$', 'public.views.offer_confirmation', name='nuncausaremosesto' ),
+    url(r'^validarUsuario/$', 'public.views.index', name='user_validation' ),
+    url(r'^validarUsuario/([a-zA-Z0-9_]+)$', 'public.views.user_validation', name='nuncausaremosestotampoco' ),
    
 # Redirecciona a la vista del login
 

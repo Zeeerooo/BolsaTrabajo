@@ -18,4 +18,4 @@ class EmailConfirmation(models.Model):
             days=settings.EMAIL_CONFIRMATION_DAYS) #definir EMAIL_CONFIRMATION_DAYS
         return expiration_date <= datetime.now()
     def __unicode__(self):
-        return _(u'Email de confirmacion para ') + self.user.username
+        return 'Email de confirmacion para '+ self.user.email

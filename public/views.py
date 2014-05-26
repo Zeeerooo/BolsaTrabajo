@@ -15,6 +15,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 #BD
 from public.models import Offer
+from normal_user.models import EmailConfirmation
 
 
 @require_GET
@@ -114,7 +115,7 @@ def offerView_post(request):
         url="http://"+request.get_host()+reverse('offer_confirmation')+ code
         html_content = render_to_string('confirmation/offer.html', {'url':url})
         text_content = strip_tags(html_content)
-        subject = "confirmación Oferta"
+        subject = "Confirmación Oferta"
         msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
@@ -132,8 +133,6 @@ def signup(request):
     # random username
     data['username'] = ''.join([choice(letters) for i in xrange(30)])
     form = SignUpForm(data)
-    print data
-    print form.errors 
     if not form.is_valid():
         messages.add_message(request, messages.ERROR, 'Complete correctamente los datos')
         loginForm = LoginForm()
@@ -141,27 +140,33 @@ def signup(request):
     form.save()
     email = form.cleaned_data['email']
     password = form.cleaned_data['password1']
-    #user = User.objects.get(email=email)
+    user = User.objects.get(email=email)
+    
+    #envio mail
+    code = ''.join([choice(letters) for i in xrange(40)])
+    var = EmailConfirmation.objects.filter(user=user)
+    if var:
+        var.update(code=code)
+    else:
+        emailConfirmation = EmailConfirmation(user=user, code=code)
+        emailConfirmation.save()    
+    url="http://"+request.get_host()+reverse('user_validation')+code
+    html_content = render_to_string('confirmation/user.html', {'url':url})
+    text_content = strip_tags(html_content)
+    subject = "Valida tu registro en Bolsa de TrabajoDCC"
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
-    #code = ''.join([choice(letters) for i in xrange(40)])
-    #var = EmailConfirmation.objects.filter(user=user)
-    #if var:
-    #    var.update(code=code)
-    #else:
-    #    emailConfirmation = EmailConfirmation(user=user, code=code)
-    #    emailConfirmation.save()
-    #url="http://"+request.get_host()+reverse('uservalidation')+code
-    #html_content = render_to_string('register/emailvalidation.html', {'url':url})
-    #subject = _(u"Valida tu registro en Bolsa de TrabajoDCC")
-    #send_html_mail(subject, html_content, [email])
-    #messages.success(request, 'En estos momentos te estamos enviando un mail para validar tu cuenta')
-    user = authenticate(username=email, password=password)
-    login(request, user)
-    return render_to_response("index.html", context_instance = RequestContext(request))
+    user.is_active=False
+    user.save()
+
+    loginForm = LoginForm()
+    return render_to_response('usuario_registrado.html', {"loginForm" : loginForm,} ,context_instance = RequestContext(request))
 
 
 @require_GET
-def offer_confirmation_code(request, code):
+def offer_confirmation(request, code):
     loginForm = LoginForm()
     if code:
         try:
@@ -173,6 +178,23 @@ def offer_confirmation_code(request, code):
             return render_to_response('oferta_verificada.html',{"loginForm":loginForm},  context_instance = RequestContext(request))
         except Offer_Confirmation.DoesNotExist:
             messages.add_message(request, messages.ERROR, 'Código de Oferta no existe')
+    form = SignUpForm()
+    return render_to_response("login.html", {"loginForm":loginForm, "signUpForm": form}, context_instance = RequestContext(request))
+
+
+@require_GET
+def user_validation(request, code):
+    loginForm = LoginForm()
+    if code:
+        try:
+            confirmation = EmailConfirmation.objects.get(code=code)
+            user = confirmation.user
+            user.is_active=True
+            confirmation.delete()
+            user.save()
+            return render_to_response('usuario_validado.html',{"loginForm":loginForm},  context_instance = RequestContext(request))
+        except EmailConfirmation.DoesNotExist:
+            messages.add_message(request, messages.ERROR, 'Código de Usuario no existe')
     form = SignUpForm()
     return render_to_response("login.html", {"loginForm":loginForm, "signUpForm": form}, context_instance = RequestContext(request))
 
