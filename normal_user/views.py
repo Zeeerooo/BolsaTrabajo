@@ -14,13 +14,16 @@ def catalogo(request, active_tab="Trabajo Full-Time"):
 	try:
 		selectedCategory = Offer_Type.objects.get(name=active_tab)
 	except Offer_Type.DoesNotExist:
-		selectedCategory = Offer_Type(name="Ver Todos")
+		selectedCategory = Offer_Type(name="Ver Todos", id=0)
 
-	#return HttpResponse("Here's the text of the Web page.")
-
+	#Recuperar Categorias para barra de navegacion
 	categories = Offer_Type.objects.all()
-	#recuperar ofertas de bd
-	jobs = Offer.objects.all().filter(verified=True)
+	#Recuperar ofertas según categoria seleccionada
+	if(selectedCategory.id==0):
+		jobs = Offer.objects.all()
+	else:
+		jobs = Offer.objects.filter(offer_type__id=selectedCategory.id)
+	jobs = jobs.filter(verified=True)
 
 	#diccionario para la vista
 	data = {'jobs':jobs, 'selected_category':selectedCategory, 'categories':categories}
