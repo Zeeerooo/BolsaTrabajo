@@ -16,14 +16,14 @@
 	<div class="container">
 
 		<div class="page-header">
-			<h1>Catalogo de Ofertas <small>{{active_tab}}</small></h1>
+			<h1>Catalogo de Ofertas <small>{{selected_category.name}}</small></h1>
 		</div>
 		<!-- Inicio Categorias -->
 			<ul class="nav nav-tabs nav-justified">
 				{% for cat in categories %}
-					<li {% if active_tab == cat.name %} class="active" {% endif %}><a href="{% url 'catalogo' cat.name %}">{{cat.name}}</a></li>
+					<li {% if selected_category.name == cat.name %} class="active" {% endif %}><a href="{% url 'catalogo' cat.name %}">{{cat.name}}</a></li>
 				{% endfor %}
-				<li {% if active_tab == "Ver Todos" %} class="active" {% endif %}><a href="{% url 'catalogo' "Ver Todos" %}">Ver Todos</a></li>
+				<li {% if selected_category.name == "Ver Todos" %} class="active" {% endif %}><a href="{% url 'catalogo' "Ver Todos" %}">Ver Todos</a></li>
 			</ul>
 		<!-- Fin Categorias -->
 
