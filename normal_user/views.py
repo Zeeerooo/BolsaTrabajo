@@ -10,7 +10,11 @@ from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 
 def catalogo(request, active_tab="Trabajo Full-Time"):
-	selectedCategory = Offer_Type.objects.get(name=active_tab)
+
+	try:
+		selectedCategory = Offer_Type.objects.get(name=active_tab)
+	except Offer_Type.DoesNotExist:
+		selectedCategory = Offer_Type(name="Ver Todos")
 
 	#return HttpResponse("Here's the text of the Web page.")
 
@@ -19,7 +23,7 @@ def catalogo(request, active_tab="Trabajo Full-Time"):
 	jobs = Offer.objects.all().filter(verified=True)
 
 	#diccionario para la vista
-	data = {'jobs':jobs, 'active_tab':active_tab, 'categories':categories}
+	data = {'jobs':jobs, 'selected_category':selectedCategory, 'categories':categories}
 	return render_to_response('catalogo.html', data, context_instance = RequestContext(request))
 
 def show_offer(request, offer_id):

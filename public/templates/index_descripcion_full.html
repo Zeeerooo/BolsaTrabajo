@@ -1,11 +1,12 @@
 {% load staticfiles%}
-{% if not user.is_authenticated %}
 <div id="estudiantes-info" class="row featurette">
 	<div class="col-md-7">
 		<h2 class="featurette-heading">Un completo catálogo de ofertas para <span class="text-muted">Estudiantes</span></h2>
 		<p class="lead">Ingresando al sistema podrás navegar entre las distintas ofertas disponibles. Puedes filtrar resultados según tus preferencias y objetivos del trabajo que necesites.</p>
 		<p class="lead">Sólo necesitas un correo <code>@dcc.uchile.cl</code> para registrarte y podrás hacer uso plenamente del sitio.</p>
+{% if not user.is_authenticated %}
 		<div style="text-align:center"><a class="btn btn-lg btn-primary" href="{% url 'login' %}" role="button">Registro Nuevo Usuario</a></div>
+{% endif %}
 	</div>
 	<div class="col-md-5">
 		<img class="featurette-image img-responsive" src="{% static 'img/index_full1.png' %}" alt="Generic placeholder image">
@@ -13,9 +14,6 @@
 </div>
 
 <hr class="featurette-divider">
-
-
-{% endif %}
 
 <div id="empresas-info" class="row featurette">
 	<div class="col-md-5">
