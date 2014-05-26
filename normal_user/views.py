@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 
+@login_required(login_url='/login/',redirect_field_name=None)
 def catalogo(request, active_tab="Trabajo Full-Time"):
-
 	try:
 		selectedCategory = Offer_Type.objects.get(name=active_tab)
 	except Offer_Type.DoesNotExist:
@@ -29,6 +29,7 @@ def catalogo(request, active_tab="Trabajo Full-Time"):
 	data = {'jobs':jobs, 'selected_category':selectedCategory, 'categories':categories}
 	return render_to_response('catalogo.html', data, context_instance = RequestContext(request))
 
+@login_required(login_url='/login/',redirect_field_name=None)
 def show_offer(request, offer_id):
 	#return HttpResponse("Mostrar oferta completa." + offer_id)
 	oferta = Offer.objects.get(id=offer_id)
@@ -36,11 +37,12 @@ def show_offer(request, offer_id):
 	data = {'offer':oferta}
 	return render_to_response('oferta_full.html', data, context_instance = RequestContext(request))
 
+@login_required(login_url='/login/',redirect_field_name=None)
 def user_preferences(request):
 	return HttpResponse("Sitio de user_preferences.")
 
 
-@login_required(login_url='/login',redirect_field_name=None)
+@login_required(login_url='/login/',redirect_field_name=None)
 def log_out(request):
 	logout(request)
 	return HttpResponseRedirect(reverse("index"))
