@@ -60,7 +60,7 @@ def loginView_post(request):
             #messages.add_message(request, messages.SUCCESS, 'Ingresado correctamente')
     else:
         messages.add_message(request, messages.ERROR, 'Email o contraseña incorrectos')
-    return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
+    return render_to_response('index.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
 
 
 #Ofertas
