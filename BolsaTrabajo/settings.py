@@ -114,3 +114,10 @@ OFFER_AVALAIBLE_DAYS= datetime.timedelta(days=30)
 
 
 AUTHENTICATION_BACKENDS = ('backends.EmailAuthBackend',)
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'no-reply.bolsatrabajos@cadcc.cl'
+EMAIL_HOST_PASSWORD = 'cumpliendopromesas2014'
+

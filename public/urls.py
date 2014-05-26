@@ -9,7 +9,11 @@ urlpatterns = patterns('',
     url(r'^signup/',   METHOD_DISPATCHER, {'GET': views.loginView, 'POST': views.signup}, name='signup'),
     url(r'^oferta/', METHOD_DISPATCHER, {'GET': views.offerView, 'POST': views.offerView_post}, name='oferta'),
     url(r'^login/', METHOD_DISPATCHER, {'GET': views.loginView, 'POST': views.loginView_post}, name='login'),
+    url(r'^confirmarOferta/$', 'public.views.index', name='offer_confirmation' ),
+    url(r'^confirmarOferta/([a-zA-Z0-9_]+)$', 'public.views.offer_confirmation_code', name='nuncausaremosesto' ),
+   
 # Redirecciona a la vista del login
+
     url(r'','public.views.index', name='index'),
 # Redirecciona a la vista de la pagina contacto ubicada en la carpeta templates, llamando a la funcion adkintun (Ah, si si) en el archivo view.py
 )

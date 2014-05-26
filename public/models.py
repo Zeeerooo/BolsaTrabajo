@@ -63,5 +63,13 @@ class Offer_Type(models.Model):
 		return self.name
 
 
+class Offer_Confirmation(models.Model):
+	offer = models.ForeignKey('Offer')
+	code = models.CharField(max_length=30, blank=True)
+	date = models.DateTimeField(default=datetime.now)
+
+
+
+
 #El codigo siguiente es para hacer que donde se muestra el usuario se muestre el correo en vez del nombre de usuario real
 User.__unicode__ = lambda s: s.email

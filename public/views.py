@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 from string import letters
 from datetime import timedelta
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 #BD
 from public.models import Offer
 
@@ -62,7 +66,6 @@ def loginView_post(request):
         messages.add_message(request, messages.ERROR, 'Email o contraseña incorrectos')
     return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
 
-
 #Ofertas
 
 @require_GET
@@ -92,7 +95,11 @@ def offerView_post(request):
         print data
         oferta = Offer(long_description=data['long_description'], short_description=data['short_description'], tecnologies=data['tecnologies'], institution=data['institution'], responsable=data['responsable'], mail=data['mail'], phone=data['phone'], length=data['length'], work_direction=data['work_direction'], salary=data['salary'])
         oferta.expire_date=oferta.date+ settings.OFFER_AVALAIBLE_DAYS
-        oferta.save() #hay que grabarla antes de agregarle manytomany objects
+        oferta.verified=False
+        oferta.save() #hay que grabarla antes de agregarla a confirmation y agregarle manytomany objects
+        code = ''.join([choice(letters) for i in xrange(30)])
+        confirmation = Offer_Confirmation(offer=oferta, code=code)
+        confirmation.save()
         if 'offer_type' in data:
             for x in data['offer_type']:
                 try:
@@ -101,9 +108,19 @@ def offerView_post(request):
                 except Offer_Type.DoesNotExist:
                     pass                
         oferta.save()
-        return render_to_response('oferta_ingresada.html',  context_instance = RequestContext(request))
 
-
+        #mandar mail
+        email = oferta.mail
+        url="http://"+request.get_host()+reverse('offer_confirmation')+ code
+        html_content = render_to_string('confirmation/offer.html', {'url':url})
+        text_content = strip_tags(html_content)
+        subject = "confirmación Oferta"
+        msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        
+        return render_to_response('oferta_ingresada.html', {"loginForm" : loginForm,} ,context_instance = RequestContext(request))
+        
 
 @require_POST
 def signup(request):
@@ -141,4 +158,21 @@ def signup(request):
     user = authenticate(username=email, password=password)
     login(request, user)
     return render_to_response("index.html", context_instance = RequestContext(request))
+
+
+@require_GET
+def offer_confirmation_code(request, code):
+    loginForm = LoginForm()
+    if code:
+        try:
+            confirmation = Offer_Confirmation.objects.get(code=code)
+            offer = confirmation.offer
+            offer.verified=True
+            confirmation.delete()
+            offer.save()
+            return render_to_response('oferta_verificada.html',{"loginForm":loginForm},  context_instance = RequestContext(request))
+        except Offer_Confirmation.DoesNotExist:
+            messages.add_message(request, messages.ERROR, 'Código de Oferta no existe')
+    form = SignUpForm()
+    return render_to_response("login.html", {"loginForm":loginForm, "signUpForm": form}, context_instance = RequestContext(request))
 
