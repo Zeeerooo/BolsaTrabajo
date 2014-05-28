@@ -63,9 +63,10 @@ def loginView_post(request):
             #if request.POST.get('remember', None):
             #    request.session.set_expiry(0)
             #messages.add_message(request, messages.SUCCESS, 'Ingresado correctamente')
+        return render_to_response('index.html', {"loginForm": loginForm}, context_instance = RequestContext(request))
     else:
         messages.add_message(request, messages.ERROR, 'Email o contraseña incorrectos')
-    return render_to_response('index.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
+    return render_to_response('login.html', {"loginForm": loginForm, "signUpForm": signUpForm}, context_instance = RequestContext(request))
 
 #Ofertas
 
