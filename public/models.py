@@ -39,7 +39,7 @@ class Offer(models.Model):
 		return self.institution + " - " + str(self.date)
 
 	def tecnologies_as_list(self):
-		return self.tecnologies.split(',')
+		return ([x.strip() for x in self.tecnologies.split(',')])
 
 	def isNewOffer(self):
 		now = datetime.now().date()
