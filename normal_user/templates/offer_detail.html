@@ -6,7 +6,7 @@
 		  <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-		  <li><a href="#" onclick="printdiv('detalleOferta')"><span class="glyphicon glyphicon-save"></span> Imprimir Oferta</a></li>
+		  <li><a href="#" onclick="printdiv('detalleOferta')"><span class="glyphicon glyphicon-print"></span> Imprimir Oferta</a></li>
 		  <!--<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Enviar esta oferta a mi correo</a></li>-->
 		</ul>
 	  </div>
@@ -44,36 +44,36 @@
 	-->
   </div>
 
-  <table class="table">
+  <table class="table offerDetails">
 	<!-- Contacto -->
 	  <tr>
-		<td>Empresa o Contacto:</td>
-		<td>
+		<td class="type">Empresa o Contacto:</td>
+		<td class="value">
 		<table class="table">
-			<tr><td>{{offer.institution}}</td></tr>
+			<tr><td><b>{{offer.institution}}</b></td></tr>
 			<tr><td>{{offer.responsable}}</td></tr>
 			<tr><td><a href="mailto:{{offer.mail}}"><span class="glyphicon glyphicon-envelope"></span> {{offer.mail}}</a></td></tr>
-			<tr><td><a href="#"><span class="glyphicon glyphicon-paperclip"></span> {{offer.phone}}</a></td></tr>
+			<tr><td><a href="#"><span class="glyphicon glyphicon-earphone"></span> {{offer.phone}}</a></td></tr>
 		</table>
 		</td>
 	  </tr>
 
 	<!-- Fecha Limite -->
 	  <tr>
-		<td>Fecha Limite de Postulacion:</td>
-		<td>{{offer.expire_date}}</td>
+		<td class="type">Fecha Limite de Postulacion:</td>
+		<td class="value">{{offer.expire_date}}</td>
 	  </tr>
 
 	<!-- Duracion -->
 	  <tr>
-		<td>Duracion del Trabajo:</td>
-		<td>{{offer.length}}</td>
+		<td class="type">Duracion del Trabajo:</td>
+		<td class="value">{{offer.length}}</td>
 	  </tr>
 
 	<!-- Direccion -->
 	  <tr>
-		<td>Lugar de Trabajo:</td>
-		<td>{{offer.work_direction}}</td>
+		<td class="type">Lugar de Trabajo:</td>
+		<td class="value">{{offer.work_direction}}</td>
 	  </tr>
   </table>
 </div>
