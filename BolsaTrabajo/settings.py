@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'u4e6_qy&z_j$#)mo9ulmvoie%9-@&^u5!6(d7rlhlkel7_q^ps'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = False
 
@@ -123,8 +123,8 @@ EMAIL_HOST_PASSWORD = 'cumpliendopromesas2014'
 
 SESSION_COOKIE_HTTPONLY = True
 
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 
 CSRF_COOKIE_HTTPONLY = True
