@@ -27,7 +27,12 @@
         {% block body %}	{% endblock %}
 		<footer> <div class="container"> {% block footer %}	{% endblock %} </div></footer>
 
-	{% block extra-js %}	{% endblock %}
+	{% block extra-js %}	
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/scroll_link.js' %}"></script>
+    <script src="{% static 'js/updateChars.js' %}"></script>
+    {% endblock %}
     </body>
 
 </html>

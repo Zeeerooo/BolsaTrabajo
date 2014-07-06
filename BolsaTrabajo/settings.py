@@ -23,9 +23,9 @@ SECRET_KEY = 'u4e6_qy&z_j$#)mo9ulmvoie%9-@&^u5!6(d7rlhlkel7_q^ps'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -121,3 +121,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'no-reply.bolsatrabajos@cadcc.cl'
 EMAIL_HOST_PASSWORD = 'cumpliendopromesas2014'
 
+SESSION_COOKIE_HTTPONLY = True
+
+SESSION_COOKIE_SECURE = False
+
+CSRF_COOKIE_SECURE = False
+
+CSRF_COOKIE_HTTPONLY = True
